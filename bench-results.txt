@@ -1,0 +1,16 @@
+/usr/bin/g++ --std=c++0x -fno-rtti -fPIC -Wno-write-strings -O3 -I. -I../../lib/benchmark/include -I../../lib/omr/include_core -I../../lib/omr/jitbuilder/release/cpp/include -c bench.cpp -o bench.o
+mkdir -p ./build
+/usr/bin/g++ --std=c++0x -fno-rtti -fPIC -Wno-write-strings -O3 -o ./build/bench fib.o bench.o -L../../lib/omr/jitbuilder/release/cpp -ljitbuilder -ldl  -L../../lib/benchmark/build/src -lbenchmark -lpthread
+./build/bench --benchmark_report_aggregates_only --benchmark_repetitions=20
+-------------------------------------------------------------------
+Benchmark                         Time             CPU   Iterations
+-------------------------------------------------------------------
+BM_Compile_mean             4185118 ns      4185023 ns           20
+BM_Compile_median           4182826 ns      4182621 ns           20
+BM_Compile_stddev             12011 ns        12019 ns           20
+BM_CompileRunOnce_mean      4176898 ns      4176801 ns           20
+BM_CompileRunOnce_median    4174486 ns      4174382 ns           20
+BM_CompileRunOnce_stddev       7242 ns         7239 ns           20
+BM_CompileRun1k_mean        4179652 ns      4179553 ns           20
+BM_CompileRun1k_median      4179278 ns      4179188 ns           20
+BM_CompileRun1k_stddev         2628 ns         2608 ns           20
